@@ -8,11 +8,11 @@ const Todo = props => {
 
         <div
             //VISUAL
-            style={props.todo.completed ? { textDecoration: 'line-through' } : null}
+            style={props.todo.completed ? { textDecoration: 'line-through', marginLeft: '30px', backgroundColor: 'white', color: 'black', transition: '1s'} : { textDecoration: 'none', marginLeft: '0px', transition: '1s'} }
             //TOGGLE
-            onClick={() => props.handleToggleComplete(props.todo.id)}
+            onClick={() => props.handleToggleComplete(props.todo.id) }
         >
-            
+
             {props.todo.task}
 
         </div>

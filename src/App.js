@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '/Users/voidchaser/Lambda/React-Todo/src/components/TodoComponents/Todo.css'
+
 import TodoList from './components/TodoComponents/TodoList';
 
 import TodoForm from './components/TodoComponents/TodoForm';
@@ -15,22 +17,12 @@ class App extends React.Component {
     super();
 
     this.state = {
-
       todos: [
 
         //ARRAYS FOR DEFAULT INFORMATION TO BE ADDED
-
-        {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
-          completed: false
-        }
+        // name: item.name,
+        // id: item.id,
+        // purchased: item.purchased true or false
 
       ],
     
@@ -38,18 +30,24 @@ class App extends React.Component {
       
     };
 
+    // loop over items
+    // find grocery by given id
+    // change flag to true
+    // return updated list to state.
+
   }
 
   //THIS IS FOR WHEN YOU ADD AN ITEM TO THE LIST
 
-  addTodo = callBack => {
+  addTodo = event => {
 
-    callBack.preventDefault();
+    //prevent page refresh
+    event.preventDefault();
 
     const newTodo = {task: this.state.todo, completed: false, id: Date.now() };
 
     this.setState({
-
+      ///...is a spread operator
       todos: [...this.state.todos, newTodo],
 
       todo: ''
@@ -58,7 +56,7 @@ class App extends React.Component {
 
   };
 
-  changeTodo = callBack => this.setState({ [callBack.target.name]: callBack.target.value });
+  changeTodo = event => this.setState({ todo: event.target.value });
 
   toggleTodoComplete = id => {
 
@@ -85,19 +83,24 @@ class App extends React.Component {
 
   //CLEARING LINE-THROUGH ITEMS
 
-  clearCompletedTodos = callBack => {
+  clearCompletedTodos = event => {
 
-    callBack.preventDefault();
+    // event.preventDefault();
+    console.log('cold todos:', this.state.todos);
 
     let todos = this.state.todos.filter(todo => !todo.completed);
 
-    this.setState({ todos });
+    console.log('new todos:', this.state.todos);
+
+    this.setState({ todos: todos });
     
   };
 
   render() {
 
     return (
+
+
 
       <div>
         <TodoList
@@ -107,8 +110,11 @@ class App extends React.Component {
         <TodoForm
         
           value={this.state.todo}
+          
           handleTodoChange={this.changeTodo}
+
           handleAddTodo={this.addTodo}
+
           handleClearTodos={this.clearCompletedTodos}
         />
       </div>

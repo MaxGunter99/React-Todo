@@ -14,11 +14,12 @@ const TodoForm = props => {
                 name='todo'
                 value={props.value}
                 placeholder='Tasks'
+                
             />
 
             <button onClick={props.handleAddTodo}>Add Task</button>
 
-            <button onClick={props.handleClearTodods}>Clear Completed Task</button>
+            <button onClick={props.handleClearTodos}>Clear Completed Task</button>
             
         </form>
     );
